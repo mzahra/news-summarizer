@@ -99,18 +99,18 @@ Fetching and processing 2 'technology' article(s)...
 TOKEN BUDGET SUMMARY
 ============================================================
 Daily budget: $5.00
-Used:         $0.000158 (0.00%)
-Remaining:    $4.999842
+Used:         $0.000230 (0.00%)
+Remaining:    $4.999770
 
   OPENAI
-    Input tokens:  40
-    Output tokens: 20
-    Cost:          $0.000018
+    Input tokens:  207
+    Output tokens: 176
+    Cost:          $0.000137
 
   COHERE
-    Input tokens:  24
-    Output tokens: 8
-    Cost:          $0.000140
+    Input tokens:  264
+    Output tokens: 89
+    Cost:          $0.000093
 ============================================================
 ```
 
