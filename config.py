@@ -106,6 +106,24 @@ def print_config_summary():
         print(f"{name:<20} {'MISSING' if is_placeholder else 'set'}")
 
 
+def validate_or_exit(script_name: str):
+    """
+    Validate required configuration and exit with a consistent message if missing.
+
+    Args:
+        script_name: Name of the entry-point script for error output.
+    """
+    is_valid, missing_keys = validate_config()
+    if is_valid:
+        return
+
+    print(f"Cannot run {script_name} — missing configuration:")
+    for key in missing_keys:
+        print(f"  - {key}")
+    print("\nCheck your .env file and make sure each key above is set to a real value.")
+    raise SystemExit(1)
+
+
 if __name__ == "__main__":
     is_valid, missing_keys = validate_config()
     print_config_summary()

@@ -11,8 +11,6 @@ batch without restarting.
 Run: python main.py
 """
 
-import sys
-
 import config
 from llm_providers import TokenBudgetManager
 from summarizer import NewsSummarizer
@@ -87,13 +85,7 @@ def main():
     print("Multi-Provider News Summarizer")
     print("=" * 60)
 
-    is_valid, missing = config.validate_config()
-    if not is_valid:
-        print("\nMissing required configuration:")
-        for key in missing:
-            print(f"  - {key}")
-        print("\nCheck your .env file and try again.")
-        sys.exit(1)
+    config.validate_or_exit("main.py")
 
     budget_manager = TokenBudgetManager()
     summarizer = NewsSummarizer(budget_manager=budget_manager)

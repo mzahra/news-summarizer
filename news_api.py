@@ -104,12 +104,7 @@ def _print_articles(articles):
 
 
 if __name__ == "__main__":
-    is_valid, missing = config.validate_config()
-    if not is_valid:
-        print("Cannot run news_api.py — missing configuration:")
-        for key in missing:
-            print(f"  - {key}")
-        raise SystemExit(1)
+    config.validate_or_exit("news_api.py")
 
     client = NewsAPIClient()
 
