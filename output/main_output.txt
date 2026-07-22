@@ -10,59 +10,59 @@ Available categories:
   5. health
   6. sports
   7. entertainment
-Choose a category [1-7] (default: technology):
+Choose a category [1-7] (default: technology): How many articles to process? (1-10, default: 3): 
 Fetching and processing 3 'technology' article(s)...
 
 Trying openai (primary)...
-[openai] 81 in + 50 out tokens = $0.000042 ($5.0000 remaining)
+[openai] 81 in + 52 out tokens = $0.000043 ($5.0000 remaining)
 openai succeeded
 Trying cohere (primary)...
-[cohere] 85 in + 29 out tokens = $0.000503 ($4.9995 remaining)
+[cohere] 86 in + 31 out tokens = $0.000031 ($4.9999 remaining)
 cohere succeeded
 Trying openai (primary)...
-[openai] 47 in + 60 out tokens = $0.000043 ($4.9994 remaining)
+[openai] 47 in + 61 out tokens = $0.000044 ($4.9999 remaining)
 openai succeeded
 Trying cohere (primary)...
-[cohere] 86 in + 28 out tokens = $0.000495 ($4.9989 remaining)
+[cohere] 88 in + 30 out tokens = $0.000031 ($4.9999 remaining)
 cohere succeeded
 Trying openai (primary)...
-[openai] 79 in + 65 out tokens = $0.000051 ($4.9989 remaining)
+[openai] 79 in + 63 out tokens = $0.000050 ($4.9998 remaining)
 openai succeeded
 Trying cohere (primary)...
-[cohere] 93 in + 24 out tokens = $0.000473 ($4.9984 remaining)
+[cohere] 90 in + 28 out tokens = $0.000030 ($4.9998 remaining)
 cohere succeeded
 
 1. The New Mercedes-Maybach GLS Debuts With More Power, Better Style - Motor1.com
    URL:               https://www.motor1.com/news/802238/2027-mercedes-maybach-gls-680-engine-specs-details/
-   Summary (openai):  Mercedes-Benz has introduced the 2027 Maybach GLS 680, featuring a more powerful twin-turbocharged V8 engine along with a refreshed design. The luxury SUV combines enhanced performance with improved styling to elevate its appeal in the high-end market.
-   Sentiment (cohere): Positive: The text highlights the introduction of a new luxury vehicle with advanced features, indicating a positive sentiment towards the brand's innovation and market appeal.
+   Summary (openai):  Mercedes-Benz has introduced the 2027 Maybach GLS 680, featuring a more powerful twin-turbocharged V8 engine and a refreshed design. The luxury SUV combines enhanced performance with improved aesthetics, maintaining its status as a premium offering in the automotive market.
+   Sentiment (cohere): Positive: The text expresses enthusiasm for the new Mercedes-Benz model, highlighting its improved performance and design, which indicates a favorable review and a positive sentiment.
 
 2. Donkey Kong Arcade LEGO Set Official Images Surface, Already In-Store - nintendolife.com
    URL:               http://www.nintendolife.com/news/2026/07/donkey-kong-arcade-lego-set-official-images-surface-already-in-store
-   Summary (openai):  Official images of the new Donkey Kong Arcade LEGO set have been released, revealing its details and design. The set is already available in stores, allowing fans of both Donkey Kong and LEGO to purchase it. The release adds to the growing lineup of themed LEGO sets catering to popular video game franchises.
-   Sentiment (cohere): Positive: The text expresses excitement about the release of a new LEGO set, appealing to fans of both the Donkey Kong franchise and LEGO enthusiasts.
+   Summary (openai):  Official images of the new Donkey Kong arcade LEGO set have been released, showcasing the set's detailed design elements inspired by the classic game. The set is already available in stores, allowing fans to recreate the iconic arcade experience at home. This release highlights the growing trend of LEGO collaborating with popular gaming franchises.
+   Sentiment (cohere): Positive. The text expresses excitement and appreciation for the new LEGO set, highlighting its detailed design and the opportunity for fans to enjoy a nostalgic gaming experience.
 
 3. iOS 27 beta 4 adds a useful Apple TV app feature, here’s how it works - 9to5Mac
    URL:               https://9to5mac.com/2026/07/20/ios-27-beta-4-adds-a-useful-apple-tv-app-feature-heres-how-it-works/
-   Summary (openai):  Apple's iOS 27 beta 4 introduces a new "Automatic Downloads" feature for the Apple TV app, enhancing user experience by allowing seamless content updates. This feature automatically downloads new episodes and updates, ensuring users have the latest content accessible without manual intervention. The update aims to streamline user interaction with the Apple TV ecosystem.
-   Sentiment (cohere): Positive: The text praises Apple's new feature, highlighting its benefits for users and its potential to improve the overall experience.
+   Summary (openai):  Apple's iOS 27 beta 4 introduces a new "Automatic Downloads" feature for the Apple TV app, enhancing user convenience. This feature allows users to automatically download purchased content across their devices, streamlining access to their media library. The update aims to improve the overall user experience for Apple TV app users.
+   Sentiment (cohere): Positive: The text describes a new feature that enhances user convenience and improves the overall user experience, indicating a positive sentiment towards the iOS update.
 
 ============================================================
 TOKEN BUDGET SUMMARY
 ============================================================
 Daily budget: $5.00
-Used:         $0.001606 (0.03%)
-Remaining:    $4.998394
+Used:         $0.000230 (0.00%)
+Remaining:    $4.999770
 
   OPENAI
     Input tokens:  207
-    Output tokens: 175
-    Cost:          $0.000136
+    Output tokens: 176
+    Cost:          $0.000137
 
   COHERE
     Input tokens:  264
-    Output tokens: 81
-    Cost:          $0.001470
+    Output tokens: 89
+    Cost:          $0.000093
 ============================================================
 
 Process another batch? [y/N]: 
@@ -72,16 +72,16 @@ Session complete. Final cost summary:
 TOKEN BUDGET SUMMARY
 ============================================================
 Daily budget: $5.00
-Used:         $0.001606 (0.03%)
-Remaining:    $4.998394
+Used:         $0.000230 (0.00%)
+Remaining:    $4.999770
 
   OPENAI
     Input tokens:  207
-    Output tokens: 175
-    Cost:          $0.000136
+    Output tokens: 176
+    Cost:          $0.000137
 
   COHERE
     Input tokens:  264
-    Output tokens: 81
-    Cost:          $0.001470
+    Output tokens: 89
+    Cost:          $0.000093
 ============================================================

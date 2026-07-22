@@ -6,7 +6,7 @@ A small pipeline that fetches live news articles, summarizes each one with OpenA
 
 1. **Fetches articles** from [NewsAPI](https://newsapi.org) for a chosen category (technology, business, science, etc.).
 2. **Summarizes each article** in 2-3 sentences using OpenAI (`gpt-4o-mini`). If OpenAI fails, the summary step automatically falls back to Cohere.
-3. **Analyzes sentiment** of the summary (Positive / Neutral / Negative + reason) using Cohere (`command-r-plus-08-2024`). If Cohere fails, this step falls back to OpenAI.
+3. **Analyzes sentiment** of the summary (Positive / Neutral / Negative + reason) using Cohere (`command-r-08-2024`). If Cohere fails, this step falls back to OpenAI.
 4. **Tracks cost** on every single request using the exact token counts returned by each provider's API (not estimates), and enforces a configurable daily budget.
 5. **Respects rate limits**: the NewsAPI client retries with exponential backoff on `429` responses instead of failing immediately.
 
@@ -121,8 +121,8 @@ Cost is tracked per-request using each provider's actual returned token counts, 
 | Provider | Model | Input ($/1M tokens) | Output ($/1M tokens) |
 |---|---|---|---|
 | OpenAI | gpt-4o-mini | $0.15 | $0.60 |
-| Cohere | command-r-plus-08-2024 | $2.50 | $10.00 |
+| Cohere | command-r-08-2024 | $0.15 | $0.60 |
 
-For a typical article (short title + description in, a 2-3 sentence summary out), summarization runs roughly 200-400 input tokens and 60-120 output tokens, a fraction of a cent per article on OpenAI. Sentiment analysis is a shorter prompt (the summary itself) but priced about 15x higher per token on Cohere's `command-r-plus`, so it often ends up costing more per call than the OpenAI summarization step despite using fewer tokens, as the example above shows (COHERE cost > OPENAI cost even with fewer tokens processed).
+For a typical article (short title + description in, a 2-3 sentence summary out), summarization runs roughly 200-400 input tokens and 60-120 output tokens, a fraction of a cent per article on OpenAI. Sentiment analysis is a shorter prompt (the summary itself) but priced about 15x higher per token on Cohere's `command-r`, so it often ends up costing more per call than the OpenAI summarization step despite using fewer tokens, as the example above shows (COHERE cost > OPENAI cost even with fewer tokens processed).
 
 Processing a batch of 5 articles typically costs well under $0.01 total. The `DAILY_BUDGET` setting in `.env` (default `$5.00`) is a hard ceiling. If a request would exceed it, `TokenBudgetManager` raises an error instead of making the call, so a runaway loop can't rack up unexpected charges.

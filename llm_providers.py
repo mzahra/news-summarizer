@@ -30,7 +30,7 @@ openai_client = OpenAI(api_key=config.OPENAI_API_KEY)
 cohere_client = cohere.ClientV2(api_key=config.COHERE_API_KEY) if cohere else None
 
 OPENAI_MODEL = "gpt-4o-mini"
-COHERE_MODEL = "command-r-plus-08-2024"
+COHERE_MODEL = "command-r-08-2024"
 
 # Pricing per token, derived from published per-million-token rates.
 # Update here if provider pricing changes.
@@ -40,8 +40,8 @@ PRICING = {
         "gpt-4o": {"input": 2.50 / 1_000_000, "output": 10.00 / 1_000_000},
     },
     "cohere": {
-        "command-r-plus-08-2024": {"input": 2.50 / 1_000_000, "output": 10.00 / 1_000_000},
         "command-r-08-2024": {"input": 0.15 / 1_000_000, "output": 0.60 / 1_000_000},
+        "command-r-plus-08-2024": {"input": 2.50 / 1_000_000, "output": 10.00 / 1_000_000},
     },
 }
 

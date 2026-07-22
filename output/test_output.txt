@@ -23,4 +23,4 @@ test_summarizer.py::TestNewsSummarizer::test_process_articles_summarizes_and_sco
 test_summarizer.py::TestNewsSummarizer::test_process_articles_returns_empty_list_on_fetch_failure PASSED [ 94%]
 test_summarizer.py::TestNewsSummarizer::test_summarize_falls_back_to_cohere_when_openai_fails PASSED [100%]
 
-============================== 17 passed in 2.57s ==============================
+============================== 17 passed in 2.42s ==============================
