@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Provider News Summarizer</title>
+  <style>
+    body { font-family: -apple-system, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    .subtitle { color: #555; margin-top: 0; }
+    form { display: flex; gap: 10px; align-items: center; margin: 20px 0 28px; flex-wrap: wrap; }
+    select, input[type=number] { padding: 6px 8px; font-size: 0.95rem; }
+    button { padding: 7px 16px; cursor: pointer; font-size: 0.95rem; }
+    .error { background: #fde8e8; border: 1px solid #f3b4b4; padding: 10px 14px; border-radius: 4px; color: #a12727; margin-bottom: 20px; }
+    .article { border: 1px solid #ddd; border-radius: 6px; padding: 14px 16px; margin-bottom: 14px; }
+    .article h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .article a { color: #1a5fb4; word-break: break-all; }
+    .label { font-weight: 600; }
+    .provider { color: #777; font-size: 0.85em; }
+    .budget { border-top: 2px solid #333; padding-top: 14px; margin-top: 28px; }
+    .budget h2 { font-size: 1.1rem; }
+    .budget table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    .budget td, .budget th { text-align: left; padding: 4px 12px 4px 0; font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+  <h1>Multi-Provider News Summarizer</h1>
+  <p class="subtitle">Fetches news, summarizes with OpenAI, scores sentiment with Cohere, tracks cost.</p>
+
+  <form action="/process" method="post">
+    <label for="category">Category:</label>
+    <select name="category" id="category">
+      {% for cat in categories %}
+        <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="count">Articles:</label>
+    <input type="number" name="count" id="count" min="1" max="10" value="{{ selected_count or 3 }}">
+
+    <button type="submit">Process</button>
+  </form>
+
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% endif %}
+
+  {% if results %}
+    {% for r in results %}
+      <div class="article">
+        <h3>{{ loop.index }}. {{ r.title }}</h3>
+        <p><a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.url }}</a></p>
+        <p><span class="label">Summary</span> <span class="provider">({{ r.summary_provider }})</span>: {{ r.summary }}</p>
+        <p><span class="label">Sentiment</span> <span class="provider">({{ r.sentiment_provider }})</span>: {{ r.sentiment }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if budget %}
+    <div class="budget">
+      <h2>Token Budget Summary</h2>
+      <p>
+        Daily budget: ${{ "%.2f"|format(budget.daily_budget) }}
+        &nbsp;|&nbsp; Used: ${{ "%.6f"|format(budget.used_budget) }}
+        &nbsp;|&nbsp; Remaining: ${{ "%.6f"|format(budget.remaining_budget) }}
+      </p>
+      {% set has_usage = budget.provider_usage.values() | selectattr("input_tokens") | list %}
+      {% if has_usage %}
+      <table>
+        <tr><th>Provider</th><th>Input tokens</th><th>Output tokens</th><th>Cost</th></tr>
+        {% for name, usage in budget.provider_usage.items() %}
+          {% if usage.input_tokens or usage.output_tokens %}
+            <tr>
+              <td>{{ name|upper }}</td>
+              <td>{{ usage.input_tokens }}</td>
+              <td>{{ usage.output_tokens }}</td>
+              <td>${{ "%.6f"|format(usage.cost) }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  {% endif %}
+</body>
+</html>

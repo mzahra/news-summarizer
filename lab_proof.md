@@ -1,6 +1,6 @@
 # Lab Proof
 
-**Workflow:** NewsAPI fetches an article, OpenAI summarizes it, Cohere scores its sentiment, cost is tracked per request. Run with `python main.py`.
+**Workflow:** NewsAPI fetches an article, OpenAI summarizes it, Cohere scores its sentiment, cost is tracked per request. Run with `python main.py` (CLI) or `python app.py` (web UI at `http://127.0.0.1:5000`).
 
 ## Execution trace
 
@@ -24,6 +24,8 @@ cohere succeeded
 TOKEN BUDGET SUMMARY: Used $0.000230 of $5.00, OPENAI 383 tokens / $0.000137, COHERE 353 tokens / $0.000093
 ```
 
+Full run of 3 articles: [main_output.txt](main_output.txt)
+
 ## Input
 
 ```json
@@ -44,3 +46,9 @@ TOKEN BUDGET SUMMARY: Used $0.000230 of $5.00, OPENAI 383 tokens / $0.000137, CO
   "sentiment_provider": "cohere"
 }
 ```
+
+## Web UI (stretch goal)
+
+`app.py` wraps the same `NewsSummarizer` pipeline in a one-page Flask form: pick a category and article count, submit, see results and a running cost summary rendered on the page. Same fetch, summarize, sentiment, and cost logic as the CLI above, just a browser front end instead of terminal prompts.
+
+![alt text](image.png)
